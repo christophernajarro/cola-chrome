@@ -1,0 +1,5 @@
+# Sustituye estos ejemplos por tus proxies reales, uno distinto por sesion.
+# Estos dominios de ejemplo no son proxies funcionales.
+socks5://proxy-1.example:1080
+socks5://proxy-2.example:1080
+socks5://proxy-3.example:1080
