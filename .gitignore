@@ -1,2 +1,4 @@
 .DS_Store
 *.log
+proxies*.txt
+!proxies.example.txt
