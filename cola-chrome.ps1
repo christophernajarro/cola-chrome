@@ -61,7 +61,9 @@ function Set-ChromeTotal([int]$Total) {
         )
         if ($Headless) { $arguments += '--headless=new' }
         $arguments += "`"$Url`""
-        $process = Start-Process -FilePath $ChromePath -ArgumentList $arguments -PassThru
+        # ponytail: en Mac Chrome escribe sus logs en la consola; en Windows no.
+        $quiet = if ($env:OS -ne 'Windows_NT') { @{ RedirectStandardError = '/dev/null' } } else { @{} }
+        $process = Start-Process -FilePath $ChromePath -ArgumentList $arguments -PassThru @quiet
         $script:ChromeSessions.Add([pscustomobject]@{ Id = $visitor; Profile = $profile; Process = $process })
         Write-Host "Abriendo $($script:ChromeSessions.Count)/$Total - ID $visitor"
     }
